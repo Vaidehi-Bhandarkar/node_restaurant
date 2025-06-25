@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
+const PORT = process.env.PORT || 3000;
 
 const personRoutes = require('./routes/personRoutes.js');
 const menuRoutes = require('./routes/menuRoute.js');
@@ -15,6 +16,6 @@ app.get('/', (req, res) => {
 app.use('/person', personRoutes);
 app.use('/menu', menuRoutes);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Listening to port 3000');
 });
