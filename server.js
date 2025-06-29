@@ -1,35 +1,23 @@
 const express = require('express');
 const app = express();
 const db = require('./db');
+require('dotenv').config();
+
+const PORT = process.env.PORT || 3000;
+
+const personRoutes = require('./routes/personRoutes.js');
+const menuRoutes = require('./routes/menuRoute.js');
+
+const bodyParse = require('body-parser');
+app.use(bodyParse.json());
 
 app.get('/', (req, res) => {
-  res.send('Welcome to this Weather Application');
-})
+  res.send('Welcome to my Restaurant');
+});
 
-app.get('/ahmedabad', (req, res) => {
-    var abd = {
-        "city": "Ahmedabad",
-        "minTemprature": 34,
-        "maxTemprature": 42,
-        "humidity": "85%",
-    };
-    res.send(abd);
-})
+app.use('/person', personRoutes);
+app.use('/menu', menuRoutes);
 
-app.get('/hyderabad', (req, res) => {
-    var hyd = {
-        "city": "Hyderabad",
-        "minTemprature": 23,
-        "maxTemprature": 32,
-        "humidity": "24%",
-    };
-    res.send(hyd);
-})
-
-app.post('/mumbai', (req, res) => {
-    res.send("Data stored");
-})
-
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Listening to port 3000');
-})
+});
