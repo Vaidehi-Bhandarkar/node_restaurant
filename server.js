@@ -27,7 +27,8 @@ app.get('/', authMiddleware, (req, res) => {
   res.send('Welcome to my Restaurant');
 });
 
-app.use('/person', authMiddleware, personRoutes);
+// app.use('/person', authMiddleware, personRoutes); //middleware in local
+app.use('/person', personRoutes);
 app.use('/menu', menuRoutes);
 
 app.listen(PORT, () => {

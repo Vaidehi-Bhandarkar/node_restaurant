@@ -20,7 +20,6 @@ const personSchema = new mongoose.Schema({
     },
     "email": {
         type: String,
-        unique: true,
     },
     "address": {
         type: String,
